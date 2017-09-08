@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <script src="js/jquery-1.8.0.min.js"></script>
+    <style>
+        #home{
+            width: 600px;
+            height: 300px;
+            margin: auto;
+            background-color: #7FFFD4;
+        }
+        #head{
+            padding-top: 20px;
+            height: 100px;
+        }
+        .dl1{
+            clear: both;
+        }
+        .dl1 dt{
+            float: left;
+            text-align: right;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .dl1 dd{
+            float: left;
+            height: 30px;
+            line-height: 30px;
+        }
+        #foot{
+            text-align: center;
+        }
+        h1{
+            padding-top: 20px;
+            text-align: center;
+            color: bisque;
+        }
+    </style>
+    <body>
+        <div id="home">
+            <h1>用户登陆</h1>
+            <div id="head">
+            <form action="biaodan.html" name="regform" method="post" >
+                <dl class="dl1">
+                    <dt>用户名 : </dt>
+                    <dd><input type="text" name="uname"/></dd>
+                    <dd id="erroruname"></dd>
+                </dl>
+                <dl class="dl1">
+                    <dt>密码 : </dt>
+                    <dd><input type="password"/></dd>
+                    <dd id="errorpass"></dd>
+                </dl>
+            </div>
+                <div id="foot">
+                    <input type="submit" value="提交"/>
+                    <input type="reset" value="重置"/>
+                </div>
+            </form>
+        </div>
+    </body>
+
+
+    <script>
+        var cnresu = false;
+        $(function(){
+            $("input[name='uname']").blur(function(){
+            //blur从链接上移开焦点(鼠标离开框时)
+                var unamestr = $(this).val();
+                var regstr = /^[\u4e00-\u9fa5]{2,4}$/;
+                if(!regstr.test(unamestr)){
+                    $(this).parent().next("dd").html("必须是2-4个汉字");
+                    cnresu = false;
+                    return;
+                }
+                cnresu = true;
+            });
+            $("input[name='uname']").focus(function(){
+            //focus给予链接焦点(鼠标点中框时)
+                $(this).css("border","solid 1px #dddddd");
+                //$(this).val("");
+                $(this).parent().next("dd").html("");
+            });
+        });
+    </script>
+</html>
